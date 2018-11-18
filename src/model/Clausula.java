@@ -12,21 +12,21 @@ import java.util.ArrayList;
  * @author Gigo
  */
 public class Clausula {
-    private ArrayList<Integer> literais;
+    private ArrayList<Literal> literais;
     
     public Clausula(){
         literais = new ArrayList<>();
     }
     
     public void removerLiteral(Integer literal){
-        for(Integer i : literais){
-            if(i.equals(literal)){
+        for(Literal i : literais){
+            if(i.getLiteral().equals(literal)){
                 literais.remove(i);
             }
         }
     }
     
-    public Integer clausulaUnitaria(){
+    public Literal clausulaUnitaria(){
         if(literais.size() == 1){
             return literais.get(0);
         }else{
@@ -35,8 +35,8 @@ public class Clausula {
     }
     
     public boolean contemLiteral(Integer literal){
-        for(Integer i : literais){
-            if(i.equals(literal)){
+        for(Literal i : literais){
+            if(i.getLiteral().equals(literal)){
                 return true;
             }
         }

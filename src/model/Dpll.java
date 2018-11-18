@@ -20,18 +20,19 @@ public class Dpll {
     }
     
     private ArrayList<Clausula> simplifica(ArrayList<Clausula> clausulas){
-        Integer literal = contemClausulasUnitarias(clausulas);
+        Literal literal = contemClausulasUnitarias(clausulas);
         while(literal != null){
-            apagarClausulas(clausulas, literal);
-            removerLiteralDasClausulas(clausulas, literal*-1);
+            //Pegar valoração
+            apagarClausulas(clausulas, literal.getLiteral());
+            removerLiteralDasClausulas(clausulas, literal.getLiteral()*-1);
             literal = contemClausulasUnitarias(clausulas);
         }
         return clausulas;
     }
     
-    private Integer contemClausulasUnitarias(ArrayList<Clausula> clausulas){
+    private Literal contemClausulasUnitarias(ArrayList<Clausula> clausulas){
         for(Clausula c : clausulas){
-            Integer clausula = c.clausulaUnitaria();
+            Literal clausula = c.clausulaUnitaria();
             if(clausula != null){
                 return clausula;
             }
