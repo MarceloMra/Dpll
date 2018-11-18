@@ -14,9 +14,34 @@ import java.util.ArrayList;
 public class Dpll {
     
     public boolean dpll(ArrayList<Clausula> clausulas){
+        inicializarLiterais(clausulas);
+        ArrayList<Clausula> clausulasSimpli = simplifica(clausulas);
         
+        if(clausulasSimpli.isEmpty()){
+            return true;
+        }else if(contemClausulaVazia(clausulasSimpli)){
+            return false;
+        }
         
+        //Escolher literal L com v(L)=="*"
+        
+        //Apagar a linha abaixo após a finalização
         return true;
+    }
+    
+    private boolean contemClausulaVazia(ArrayList<Clausula> clausulas){
+        for(Clausula c : clausulas){
+            if(c.estaVazia()){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private void inicializarLiterais(ArrayList<Clausula> clausulas){
+        for(Clausula c : clausulas){
+            c.inicializarLiterais();
+        }
     }
     
     private ArrayList<Clausula> simplifica(ArrayList<Clausula> clausulas){

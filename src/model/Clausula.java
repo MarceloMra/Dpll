@@ -34,6 +34,15 @@ public class Clausula {
         }
     }
     
+    
+    public boolean estaVazia(){
+        if(literais.isEmpty()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
     public boolean contemLiteral(Integer literal){
         for(Literal i : literais){
             if(i.getLiteral().equals(literal)){
@@ -41,5 +50,11 @@ public class Clausula {
             }
         }
         return false;
+    }
+    
+    public void inicializarLiterais(){
+        for(Literal l : literais){
+            l.setValoração("*");
+        }
     }
 }
