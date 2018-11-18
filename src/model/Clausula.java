@@ -43,6 +43,10 @@ public class Clausula {
         }
     }
     
+    public void addLiteral(Literal literal){
+        literais.add(literal);
+    }
+    
     public boolean contemLiteral(Integer literal){
         for(Literal i : literais){
             if(i.getLiteral().equals(literal)){
