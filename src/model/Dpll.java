@@ -23,10 +23,28 @@ public class Dpll {
             return false;
         }
         
-        //Escolher literal L com v(L)=="*"
+        //Falta Escolher literal litEsc com v(L)=="*"
         
-        //Apagar a linha abaixo após a finalização
-        return true;
+        ArrayList<Clausula> v1 = (ArrayList<Clausula>) clausulasSimpli.clone();
+        Literal l = new Literal();
+        //l.setLiteral(litEsc);
+        Clausula c = new Clausula();
+        c.addLiteral(l);
+        v1.add(c);
+        ArrayList<Clausula> v2 = (ArrayList<Clausula>) clausulasSimpli.clone();
+        l = new Literal();
+        //l.setLiteral(litEsc*-1);
+        c = new Clausula();
+        c.addLiteral(l);
+        v2.add(c);
+        
+        if(dpll(v1)){
+            return true;
+        }else if(dpll(v2)){
+            return true;
+        }else{
+            return false;
+        }
     }
     
     private boolean contemClausulaVazia(ArrayList<Clausula> clausulas){
