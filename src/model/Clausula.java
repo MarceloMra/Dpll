@@ -19,16 +19,30 @@ public class Clausula {
     }
     
     public void removerLiteral(Integer literal){
+        ArrayList<Literal> remover = new ArrayList<>();
         for(Literal i : literais){
             if(i.getLiteral().equals(literal)){
-                literais.remove(i);
+                remover.add(i);
             }
+        }
+        
+        for(Literal i : remover){
+            literais.remove(i);
+        }
+    }
+    
+    public void printar(){
+        for(Literal l : literais){
+            System.out.print(l.getLiteral()+", ");
         }
     }
     
     public Literal clausulaUnitaria(){
         if(literais.size() == 1){
-            return literais.get(0);
+            for(Literal l : literais){
+                return l;
+            }
+            return null;
         }else{
             return null;
         }
@@ -43,13 +57,27 @@ public class Clausula {
         }
     }
     
+    public Literal escolherLiteral(){
+        if(!literais.isEmpty()){
+            for(Literal l : literais){
+                if(l.getValoração().equals("*")){
+                    return l;
+                }
+            }
+            return null;
+        }else{
+            return null;
+        }
+    }
+    
     public void addLiteral(Literal literal){
         literais.add(literal);
     }
     
     public boolean contemLiteral(Integer literal){
         for(Literal i : literais){
-            if(i.getLiteral().equals(literal)){
+            
+            if(i.getLiteral() != null && i.getLiteral().equals(literal)){
                 return true;
             }
         }

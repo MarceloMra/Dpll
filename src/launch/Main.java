@@ -58,7 +58,12 @@ public class Main {
                     System.out.println("Entradas carregadas com sucesso!");
                     System.out.println("Resultado do DPLL:");
                     Dpll instanciaDpll = new Dpll();
-                    instanciaDpll.dpll(clausulas);
+                    if(instanciaDpll.dpll(clausulas)){
+                        System.out.println("Satisfazível");
+                    }else{
+                        System.out.println("Insatisfazível");
+                    }
+                    
                 } catch (FileNotFoundException ex) {
                     System.out.println(ex.getMessage());
                 } catch (IOException ex) {

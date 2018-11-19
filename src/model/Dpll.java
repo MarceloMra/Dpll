@@ -24,16 +24,16 @@ public class Dpll {
         }
         
         //Falta Escolher literal litEsc com v(L)=="*"
-        
+        Integer litEsc = escolherLiteral(clausulasSimpli);
         ArrayList<Clausula> v1 = (ArrayList<Clausula>) clausulasSimpli.clone();
         Literal l = new Literal();
-        //l.setLiteral(litEsc);
+        l.setLiteral(litEsc);
         Clausula c = new Clausula();
         c.addLiteral(l);
         v1.add(c);
         ArrayList<Clausula> v2 = (ArrayList<Clausula>) clausulasSimpli.clone();
         l = new Literal();
-        //l.setLiteral(litEsc*-1);
+        l.setLiteral(litEsc*-1);
         c = new Clausula();
         c.addLiteral(l);
         v2.add(c);
@@ -45,6 +45,16 @@ public class Dpll {
         }else{
             return false;
         }
+    }
+    
+    private Integer escolherLiteral(ArrayList<Clausula> clausulas){
+        for(Clausula c : clausulas){
+            Literal l = c.escolherLiteral();
+            if(l != null){
+                return l.getLiteral();
+            }
+        }
+        return null;
     }
     
     private boolean contemClausulaVazia(ArrayList<Clausula> clausulas){
@@ -67,12 +77,17 @@ public class Dpll {
         while(literal != null){
             //Pegar valoração
             apagarClausulas(clausulas, literal.getLiteral());
-            removerLiteralDasClausulas(clausulas, literal.getLiteral()*-1);
+            removerLiteralDasClausulas(clausulas, literal.getLiteral() * (-1));
             literal = contemClausulasUnitarias(clausulas);
         }
         return clausulas;
     }
-    
+    public void printar(ArrayList<Clausula> clausulas){
+        for(Clausula c : clausulas){
+            c.printar();
+            System.out.println("Nova clausula");
+        }
+    }
     private Literal contemClausulasUnitarias(ArrayList<Clausula> clausulas){
         for(Clausula c : clausulas){
             Literal clausula = c.clausulaUnitaria();
@@ -84,18 +99,29 @@ public class Dpll {
     }
     
     private void apagarClausulas(ArrayList<Clausula> clausulas, Integer literal){
+        ArrayList<Clausula> remover = new ArrayList<>();
         for(Clausula c : clausulas){
             if(c.contemLiteral(literal)){
-                clausulas.remove(c);
+                remover.add(c);
+                break;
             }
         }
+        
+        for(Clausula c : remover){
+            clausulas.remove(c);
+        } 
     }
     
     private void removerLiteralDasClausulas(ArrayList<Clausula> clausulas, Integer literal){
+        ArrayList<Clausula> remover = new ArrayList<>();
         for(Clausula c : clausulas){
             if(c.contemLiteral(literal)){
-                c.removerLiteral(literal);
+                remover.add(c);
             }
+        }
+        
+        for(Clausula c : remover){
+            c.removerLiteral(literal);
         }
     }
 }
