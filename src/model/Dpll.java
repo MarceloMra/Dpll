@@ -22,8 +22,7 @@ public class Dpll {
         }else if(contemClausulaVazia(clausulasSimpli)){
             return false;
         }
-        
-        //Falta Escolher literal litEsc com v(L)=="*"
+
         Integer litEsc = escolherLiteral(clausulasSimpli);
         ArrayList<Clausula> v1 = (ArrayList<Clausula>) clausulasSimpli.clone();
         Literal l1 = new Literal();
@@ -33,7 +32,7 @@ public class Dpll {
         v1.add(c1);
         ArrayList<Clausula> v2 = (ArrayList<Clausula>) clausulasSimpli.clone();
         Literal l2 = new Literal();
-        l2.setLiteral(litEsc*-1);
+        l2.setLiteral(litEsc*(-1));
         Clausula c2 = new Clausula();
         c2.addLiteral(l2);
         v2.add(c2);
