@@ -26,17 +26,17 @@ public class Dpll {
         //Falta Escolher literal litEsc com v(L)=="*"
         Integer litEsc = escolherLiteral(clausulasSimpli);
         ArrayList<Clausula> v1 = (ArrayList<Clausula>) clausulasSimpli.clone();
-        Literal l = new Literal();
-        l.setLiteral(litEsc);
-        Clausula c = new Clausula();
-        c.addLiteral(l);
-        v1.add(c);
+        Literal l1 = new Literal();
+        l1.setLiteral(litEsc);
+        Clausula c1 = new Clausula();
+        c1.addLiteral(l1);
+        v1.add(c1);
         ArrayList<Clausula> v2 = (ArrayList<Clausula>) clausulasSimpli.clone();
-        l = new Literal();
-        l.setLiteral(litEsc*-1);
-        c = new Clausula();
-        c.addLiteral(l);
-        v2.add(c);
+        Literal l2 = new Literal();
+        l2.setLiteral(litEsc*-1);
+        Clausula c2 = new Clausula();
+        c2.addLiteral(l2);
+        v2.add(c2);
         
         if(dpll(v1)){
             return true;
