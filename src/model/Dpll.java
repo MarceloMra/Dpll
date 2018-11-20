@@ -15,6 +15,7 @@ public class Dpll {
     
     public boolean dpll(ArrayList<Clausula> clausulas){
         inicializarLiterais(clausulas);
+        
         ArrayList<Clausula> clausulasSimpli = simplifica(clausulas);
         
         if(clausulasSimpli.isEmpty()){
@@ -24,12 +25,14 @@ public class Dpll {
         }
 
         Integer litEsc = escolherLiteral(clausulasSimpli);
+        
         ArrayList<Clausula> v1 = (ArrayList<Clausula>) clausulasSimpli.clone();
         Literal l1 = new Literal();
         l1.setLiteral(litEsc);
         Clausula c1 = new Clausula();
         c1.addLiteral(l1);
         v1.add(c1);
+        
         ArrayList<Clausula> v2 = (ArrayList<Clausula>) clausulasSimpli.clone();
         Literal l2 = new Literal();
         l2.setLiteral(litEsc*(-1));
